@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import calculateWinner from '../common/calc'
 import Board from '../components/board'
 
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {

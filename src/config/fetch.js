@@ -7,7 +7,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 	url = baseUrl + url;
 
 	if (type == 'GET') {
-		let dataStr = ''; //数据拼接字符串
+		let dataStr = ''; 
 		Object.keys(data).forEach(key => {
 			dataStr += key + '=' + data[key] + '&';
 		})
@@ -48,9 +48,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 			let requestObj;
 			if (window.XMLHttpRequest) {
 				requestObj = new XMLHttpRequest();
-			} else {
-				requestObj = new ActiveXObject;
-			}
+			}  
 
 			let sendData = '';
 			if (type == 'POST') {

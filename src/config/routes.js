@@ -60,6 +60,7 @@ export default () => (
     <div>   
     <Route exact path='/' component={App} />
     <Route path='/game' component={Game} />
+    <Route path="/home" component={Home} />
     {/* <Route path="/" component={home} onEnter={isLogin}>
       <IndexRoute component={home} />
       <Route path="/table" getComponent={table} />
