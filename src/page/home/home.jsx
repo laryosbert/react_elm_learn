@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import AddressSearch from '../components/AddressSearch/addrSearch'
-import {currentcity} from '../services/getData'
-
-
+import AddressSearch from '../../components/AddressSearch/addrSearch'
+import {currentcity} from '../../services/getData'
 
 class home extends Component {
     constructor(props) {
@@ -22,9 +20,9 @@ class home extends Component {
 
     render() {
         return (
-            <div>
+            <div>                
                 <label> This is the home page - {this.state.cityname}! </label>
-                <AddressSearch cityid={this.props.cityid}></AddressSearch>
+                <AddressSearch cityid={this.props.cityid}></AddressSearch>                
             </div>
         );
     }

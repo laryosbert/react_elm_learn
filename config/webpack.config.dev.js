@@ -32,9 +32,11 @@ module.exports = {
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
-  entry: [
+  entry:   
+    [
     // We ship a few polyfills by default:
-    require.resolve('./polyfills'),
+    require.resolve('./polyfills'),    
+    "babel-polyfill",
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
     // When you save a file, the client will either apply hot updates (in case
@@ -84,7 +86,10 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+      components: path.resolve(__dirname, '../src/components'),      
+      common: path.resolve(__dirname, '../src/common'),
+      images: path.resolve(__dirname, '../src/images'),
+      page: path.resolve(__dirname, '../src/page'),      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -119,6 +124,13 @@ module.exports = {
             },
             loader: require.resolve('eslint-loader'),
           },
+          {
+            loader: "babel-loader",
+            options: {
+                presets: ["react", "babel-polyfill","stage-3"],
+                plugins:["syntax-dynamic-import"]
+            }
+          }
         ],
         include: paths.appSrc,
       },

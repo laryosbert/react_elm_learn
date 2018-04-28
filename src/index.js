@@ -1,18 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'babel-polyfill'
 import { Provider } from 'react-redux'
+import 'babel-polyfill'
 import configureStore from './config/configureStore'
-import Routes from './config/routes'
 import registerServiceWorker from './registerServiceWorker'
+import App from './App'
+// import Routes from './routes/routes'
 
 const store = configureStore()
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-
 ReactDOM.render(
     <Provider store={store}>
-        <Routes />
+        {/* <Routes /> */}
+        <App />
     </Provider>,
     document.getElementById('root'),
 )

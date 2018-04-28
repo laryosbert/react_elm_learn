@@ -4,6 +4,7 @@ import { searchplace } from '../../services/getData'
 import _fetch from '../../common/fetchTimeout'
 //composition resolve onChange event Mime trigger issue
 import reactComposition from 'react-composition'
+import AddressItem from '../AddressItem/AddressItem'
 
 
 class AddressSearch extends Component {
@@ -12,7 +13,9 @@ class AddressSearch extends Component {
         super(props);
         this.state = {
             inputTxt: '',
-            finalTxt: ''
+            finalTxt: '',
+            inSearching: false,
+            addrItems: []
         };
     }
 
@@ -22,19 +25,15 @@ class AddressSearch extends Component {
     SearchAddress() {
         let schTxt = this.state.inputTxt;
         _fetch(searchplace(this.props.cityid, schTxt), 2000).then(res => {
-            // searchplace(this.props.cityid, schTxt).then(res => {
             console.log(res);
+            this.setState({
+                inSearching: true,
+                addrItems: res
+            });
         })
     }
 
     InputSearchChange(e) {
-        // let schTxt = e.target.value;
-        // if (schTxt.length > 0) {
-        //     this.SearchAddress();
-        // }
-        // this.setState({ inputTxt: schTxt });
-
-
         var value = e.target.value
         if (e.reactComposition.composition === false) {
             this.setState({
@@ -51,8 +50,14 @@ class AddressSearch extends Component {
     render() {
         return (
             <div>
-                {/* <input value={this.state.inputTxt} onChange={this.InputSearchChange.bind(this)}></input> */}
-                <input value={this.state.inputTxt} {...reactComposition({ onChange: this.InputSearchChange.bind(this) })}></input>
+                <input key value={this.state.inputTxt} {...reactComposition({ onChange: this.InputSearchChange.bind(this) })}></input>
+                {
+                    this.state.inSearching &&
+                    this.state.addrItems.map(item=>{
+                        return <AddressItem item={item}></AddressItem>
+                    })
+
+                }
             </div>
         );
     }

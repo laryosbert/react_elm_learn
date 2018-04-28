@@ -56,7 +56,8 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('./polyfills'),"babel-polyfill", paths.appIndexJs],
+    // {main: ['babel-polyfill', paths.appIndexJs]}  
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -90,7 +91,10 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+      components: path.resolve(__dirname, '../src/components'),      
+      common: path.resolve(__dirname, '../src/common'),
+      images: path.resolve(__dirname, '../src/images'),
+      page: path.resolve(__dirname, '../src/page'), 
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -124,7 +128,15 @@ module.exports = {
               
             },
             loader: require.resolve('eslint-loader'),
+            // loaders:['eslint-loader', 'babel-loader']
           },
+          {
+            loader: "babel-loader",
+            options: {
+                presets: ["react", "babel-polyfill","stage-3"],
+                plugins:["syntax-dynamic-import"]
+            }
+          }
         ],
         include: paths.appSrc,
       },
