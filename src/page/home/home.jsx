@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddressSearch from '../../components/AddressSearch/addrSearch'
 import {currentcity} from '../../services/getData'
 
-class home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,4 +28,4 @@ class home extends Component {
     }
 }
 
-export default home;
+export default Home;

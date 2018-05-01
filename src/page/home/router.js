@@ -5,12 +5,13 @@ export default [
     { 
         path: '/',
         exact: true,
-        component: asyncComponent(() => import('./home'))
-    },
-    { 
-        path: '/dd',        
-        component: asyncComponent(() => import('./home'))
-    },
+        component: asyncComponent(() => import('./Home'))
+    }
+    // ,
+    // { 
+    //     path: '/dd',        
+    //     component: asyncComponent(() => import('./home'))
+    // },
     // ,
     // {
     //     path: '/game',
