@@ -34,6 +34,7 @@ module.exports = {
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry:   
     [
+    // 'webpack-hot-middleware/client?http://localhost:8080/assets/',
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),    
     "babel-polyfill",
@@ -47,7 +48,16 @@ module.exports = {
     // the line below with these two lines if you prefer the stock client:
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+
+    //****************************************************/
+    // For using hot-middleware and webpack version bigger than version 1,
+    // express server will report error - localhost:8000/sockjs-node/ not found
+    // change below configuration to new
+    // https://github.com/webpack-contrib/webpack-hot-middleware/issues/170 
+    // require.resolve('react-dev-utils/webpackHotDevClient'),   
+    //****************************************************/ 
+    'webpack-hot-middleware/client?http://localhost:8000/',
+
     // Finally, this is your app's code:
     paths.appIndexJs,
     // We include the app code last so that if there is a runtime error during
@@ -270,5 +280,5 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
-  },
+  }
 };

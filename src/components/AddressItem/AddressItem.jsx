@@ -6,8 +6,7 @@ class AddressItem extends Component {
         let { name, address, latitude, longitude } = this.props.item;
         return (
             <div>
-                <div><Link to={`/place/latitude${latitude}&longitude${longitude}`}>{name}</Link></div>
-                {/* <div><Link to='/place'>{name}</Link></div> */}
+                <div><Link to={`/place/latitude${latitude}&longitude${longitude}`}>{name}</Link></div>                
                 <div>{address}</div>
             </div>
         );

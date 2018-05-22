@@ -5,7 +5,8 @@ import _fetch from '../../common/fetchTimeout'
 //composition resolve onChange event Mime trigger issue
 import reactComposition from 'react-composition'
 import AddressItem from '../AddressItem/AddressItem'
-
+import { Link } from 'react-router-dom'
+import { Lifecycle } from 'react-router'
 
 class AddressSearch extends Component {
 
@@ -17,6 +18,10 @@ class AddressSearch extends Component {
             inSearching: false,
             addrItems: []
         };
+        // this.props.route. .setRouteLeaveHook(
+        //     this.props.route,
+        //     this.routerWillLeave
+        //   )
     }
 
     //throttle the trigger condition, every 500 only once
@@ -30,6 +35,7 @@ class AddressSearch extends Component {
                 inSearching: true,
                 addrItems: res
             });
+            this.props.HiddleHistory();
         })
     }
 
@@ -46,6 +52,13 @@ class AddressSearch extends Component {
         }
         this.setState({ inputTxt: value })
     }
+ 
+
+    routerWillLeave(nextLocation) {        
+        console.log('before leave log');
+        return false;
+    }
+
 
     render() {
         return (
@@ -54,13 +67,21 @@ class AddressSearch extends Component {
                 {
                     this.state.inSearching &&
                     this.state.addrItems.map(item=>{
-                        return <AddressItem item={item}></AddressItem>
+                        // return <AddressItem item={item}></AddressItem>                        
+                        return (
+                        <div key={item.geohash}>
+                            <div><a href="#" onClick={this.props.SelectedPlace.bind(this,item)}>{item.name}</a></div>                            
+                            <div>{item.address}</div>
+                        </div>
+                        );                        
                     })
 
                 }
             </div>
         );
     }
+
+   
 }
 
 export default AddressSearch;
