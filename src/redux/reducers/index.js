@@ -1,5 +1,8 @@
-import { combineReducers } from 'redux'
+import {
+  combineReducers
+} from 'redux'
 
+import {CITY_CHOOSE} from '../actionTypes'
 
 const REQUEST_POSTS = 'REQUEST_POSTS'
 const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -8,10 +11,10 @@ const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
 
 function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
-  case SELECT_SUBREDDIT:
-    return action.subreddit
-  default:
-    return state
+    case SELECT_SUBREDDIT:
+      return action.subreddit
+    default:
+      return state
   }
 }
 
@@ -58,9 +61,22 @@ function postsBySubreddit(state = {}, action) {
   }
 }
 
+function homePageReducer(state = {}, action) {
+  switch (action.type) {
+    case CITY_CHOOSE:
+      return Object.assign({}, state, {
+        cityID: action.cityID
+      })
+    default:
+      return state
+  }
+
+}
+
 const rootReducer = combineReducers({
   postsBySubreddit,
-  selectedSubreddit
+  selectedSubreddit,
+  homePageReducer
 })
 
 export default rootReducer

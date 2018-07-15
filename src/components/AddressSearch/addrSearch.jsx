@@ -67,7 +67,6 @@ class AddressSearch extends Component {
         this.setState({ inSearching: false }); 
     }
 
-
     render() {
         return (
             <div>
@@ -86,8 +85,6 @@ class AddressSearch extends Component {
             </div>
         );
     }
-
-   
 }
 
 export default AddressSearch;

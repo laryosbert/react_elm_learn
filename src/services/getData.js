@@ -10,3 +10,10 @@ export const searchplace = (cityid, value) => fetch('/v1/pois', {
 	city_id: cityid,
 	keyword: value
 });
+
+/**
+ * 获取首页所有城市
+ */
+export const groupcity = () => fetch('/v1/cities', {
+	type: 'group'
+});
