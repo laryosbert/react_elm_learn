@@ -1,112 +1,23 @@
-.Rectangle
-{
-    height: 100px;
-    width: 200px;
-    background: darkgray;
-    border-width: 50px;
-    border-style: solid;
-    border-top-color: cyan;
-    border-bottom-color: blue;
-    border-left-color: orange;
-    border-right-color: green;
-}
+ .logo {
+     margin-top: 200px;
+     margin-bottom: 50px;
+     height: 100px;
+ }
 
-.Triangle
-{
-    height: 0;
-    width: 0;
-    border-left: 50px solid orange;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
-}
+ .nav {
+     height: 50px;
+     .searchCtn {
+         display: flex;
+         margin: auto;
+         width: 650px;
+     }
+ }
 
-.Cycle
-{
-    width: 120px;
-    height: 120px;
-    background: orange;
-    border-radius: 60px;
-}
+ .btnText {
+     font-size: 24px;
+ }
 
-.Arc
-{
-    width: 100px;
-    height: 100px;
-    border-style: solid;
-    border-top-width: 10px;
-    border-bottom-width: 0px;
-    border-left-width: 10px;
-    border-right-width: 0px;
-    border-top-color: red;
-    border-bottom-color: red;
-    border-left-color: red;
-    border-right-color: red;
-    background-color: transparent;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 100px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-}
-
-.NoRotate {
-    width: 100px;
-    height: 100px;
-    background: orange;
-    /* transform: rotate(-45deg); */
-}
-.Rotate
-{
-    width: 100px;
-    height: 100px;
-    background: orange;
-    transform: rotate(-45deg);
-
-    border-radius:2em;
-    border-top-left-radius:2em;
-    border-top-right-radius:2em;
-    border-bottom-right-radius:2em;
-    border-bottom-left-radius:2em;
-}
-
-
-#star {
-    width: 0;
-    height: 0;
-    margin: 50px 0;
-    color: #fc2e5a;
-    position: relative;
-    display: block;
-    border-right: 100px solid transparent;
-    border-bottom: 70px solid #fc2e5a;
-    border-left: 100px solid transparent;
-    transform: rotate(35deg);    
-}
-  
-#star:before {
-    height: 0;
-    width: 0;
-    position: absolute;
-    display: block;
-    top: -45px;
-    left: -65px;
-    border-bottom: 80px solid #fc2e5a;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    content: '';
-    transform: rotate(-35deg); 
-}
-  
-#star:after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    display: block;
-    top: 3px;
-    left: -105px;
-    color: #fc2e5a;
-    border-right: 100px solid transparent;
-    border-bottom: 70px solid #fc2e5a;
-    border-left: 100px solid transparent;
-    transform: rotate(-70deg);     
-}   
+ .btnSearch {
+     margin-left: 10px !important;
+     width: 120px;
+ }

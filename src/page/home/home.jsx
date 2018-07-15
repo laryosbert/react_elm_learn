@@ -1,90 +1,51 @@
 import React, { Component } from 'react'
 import AddressSearch from '../../components/AddressSearch/addrSearch'
 import { currentcity } from '../../services/getData'
-import { setStore, getStore, removeStore } from 'common/utils'
 import { withRouter } from 'react-router-dom'
 import PropTypes from "prop-types"
-import AddressItem from 'components/AddressItem/AddressItem'
+import AddressSearchHistory from 'components/AddrSearchHistory/addrSearchHistory'
+import Button from '@material-ui/core/Button';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import './Home.scss';
+
 
 class Home extends Component {
-
-    // static contextTypes = {
-    //     router: PropTypes.object
-    //   }
 
     constructor(props, context) {
         super(props, context);
         this.state = {
             cityid: 14,
             cityname: '',
-            showHistory: true,
-            placeSearchList: []
+            showHistory: true           
         };
     }
 
     componentDidMount() {
         currentcity(this.state.cityid).then(res => {
             this.setState({ cityname: res.name });
-        })
-        this.InitData();
+        })        
     }
-
-    InitData() {
-        //获取搜索历史记录
-        if (getStore('placeSearchHistory')) {
-            this.setState({ placeSearchList: JSON.parse(getStore('placeSearchHistory')) });
-        }
-    }
-
-    SelectedPlace(place, e) {
-        e.preventDefault();
-        console.log(place.latitude + ":" + place.longitude);
-
-        let history = getStore('placeSearchHistory');
-        let choosePlace = place;
-        let checkrepeat = false;
-        let allHistory = [];
-        if (history) {
-            allHistory = JSON.parse(history);
-            allHistory.forEach(item => {
-                if (item.latitude == choosePlace.latitude && item.longitude == choosePlace.longitude) {
-                    checkrepeat = true;
-                }
-            })
-            if (!checkrepeat) {
-                allHistory.push(choosePlace)
-            }
-        } else {
-            allHistory.push(choosePlace)
-        }
-        setStore('placeSearchHistory', allHistory)
-        // this.$router.push({path:'/msite', query:{geohash}})   
-        this.history.push('/place')
-    }
-
-    HiddleHistory() {
-        this.setState({ showHistory: false });
-    }
-
+     
     render() {
         return (
             <div>
-                <label> This is the home page - {this.state.cityname}! </label>
-                <AddressSearch cityid={this.props.cityid} SelectedPlace={this.SelectedPlace.bind(this.props)} HiddleHistory={this.HiddleHistory.bind(this)}></AddressSearch>
-                {
-                    this.state.showHistory &&
-                    this.state.placeSearchList.map((item) => {
-                        return <AddressItem key={item.geohash} item={item}></AddressItem>
-                    })
-                }
+                <div className="container">
+                    <div className="logo"></div>
+                    <div className="nav">
+                        <div className="searchCtn">
+                            <Button variant="contained" color="primary" classes={{ label: "btnText" }}>
+                                {this.state.cityname}
+                                <ExpandMoreIcon />
+                            </Button>
+                            <AddressSearch cityid={this.props.cityid} ></AddressSearch>
+                            <Button variant="contained" color="secondary" classes={{ label: "btnText" }} className="btnSearch">搜索</Button>
+                        </div>
+                        <AddressSearchHistory />
+                    </div>                   
+                </div>
             </div>
         );
     }
 }
 
-// Home.contextTypes = {
-//     router: PropTypes.routerContext
-//   };
-
-export default withRouter(Home);
-// export default Home;
+export default withRouter(Home); 

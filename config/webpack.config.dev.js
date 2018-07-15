@@ -32,11 +32,10 @@ module.exports = {
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
-  entry:   
-    [
+  entry: [
     // 'webpack-hot-middleware/client?http://localhost:8080/assets/',
     // We ship a few polyfills by default:
-    require.resolve('./polyfills'),    
+    require.resolve('./polyfills'),
     "babel-polyfill",
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
@@ -56,7 +55,7 @@ module.exports = {
     // https://github.com/webpack-contrib/webpack-hot-middleware/issues/170 
     // require.resolve('react-dev-utils/webpackHotDevClient'),   
     //****************************************************/ 
-    'webpack-hot-middleware/client?http://localhost:8000/',
+    'webpack-hot-middleware/client?http://localhost:7999/',
 
     // Finally, this is your app's code:
     paths.appIndexJs,
@@ -96,10 +95,10 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      components: path.resolve(__dirname, '../src/components'),      
+      components: path.resolve(__dirname, '../src/components'),
       common: path.resolve(__dirname, '../src/common'),
       images: path.resolve(__dirname, '../src/images'),
-      page: path.resolve(__dirname, '../src/page'),      
+      page: path.resolve(__dirname, '../src/page'),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -125,20 +124,19 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [
-          {
+        use: [{
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
           {
             loader: "babel-loader",
             options: {
-                presets: ["react", "babel-polyfill","stage-3"],
-                plugins:["syntax-dynamic-import"]
+              presets: ["react", "babel-polyfill", "stage-3"],
+              plugins: ["syntax-dynamic-import"]
             }
           }
         ],
@@ -166,12 +164,16 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
+          },
+          {
+            test: /\.scss$/,
+            loaders:['style-loader','css-loader','sass-loader']
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -220,7 +222,7 @@ module.exports = {
             // its runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/,/\.scss$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',

@@ -2,6 +2,12 @@
 import asyncComponent from 'common/asyncComponent'
 
 export default [
+    {
+        path: '/',
+        exact: true,
+        component: asyncComponent(() => import('./Home'))
+    }
+    ,
     { 
         path: '/home',
         exact: true,
