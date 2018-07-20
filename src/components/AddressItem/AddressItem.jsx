@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { setStore, getStore, removeStore } from 'common/utils'
+import { setStore, getStore, removeStore, SetSStore } from 'common/utils';
+import { Link, Route } from 'react-router-dom';
 
 class AddressItem extends Component {
 
-    SelectedPlace() {       
+
+
+    SelectedPlace() {
         let place = this.props.item;
         let history = getStore('placeSearchHistory');
         let choosePlace = place;
@@ -24,24 +26,25 @@ class AddressItem extends Component {
             allHistory.push(choosePlace)
         }
         setStore('placeSearchHistory', allHistory);
-        // this.history.push('/place')
+        let geoHash = place.latitude + "," + place.longitude;
+        SetSStore('geoHash', geoHash);
     }
 
-    clickLink(event)
-    {
+    clickLink(event) {
         this.SelectedPlace();
-        event.target.click();        
+        event.target.click();
     }
 
     render() {
         let { name, address, latitude, longitude } = this.props.item;
         return (
             <div>
-                <div><Link onMouseDown={this.clickLink.bind(this)} to={`/place/latitude${latitude}&longitude${longitude}`}>{name}</Link></div>                
+                <div><Link onMouseDown={this.clickLink.bind(this)} to={`/place?geohash=${latitude},${longitude}`}>{name}</Link></div>
                 <div>{address}</div>
             </div>
         );
     }
 }
+
 
 export default AddressItem;

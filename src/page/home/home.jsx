@@ -14,24 +14,25 @@ import './Home.scss';
 class Home extends Component {
 
     constructor(props, context) {
-        super(props, context);        
+        super(props, context);
     }
 
     componentDidMount() {
         this.props.changeCity();
     }
 
-    componentwillreceiveprops(nextProps)
-    {
+    componentwillreceiveprops(nextProps) {
         console.log(nextProps);
     }
 
-    render() {        
+    render() {
         console.log(this.props.cityid);
         return (
             <div>
                 <div className="container">
-                    <div className="logo"></div>
+                    <div className="logo">
+                        <img src={require('../../images/eleme.png')}></img>
+                    </div>
                     <div className="nav">
                         <div className="searchCtn">
                             <CityChoose cityid={this.props.cityid} />

@@ -8,7 +8,7 @@ export default [
     }
     // ,
     // { 
-    //     path: '/place/2',
+    //     path: '/place/:geohash',
     //     component: asyncComponent(() => import('./Place'))
     // },
 ]

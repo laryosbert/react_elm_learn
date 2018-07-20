@@ -2,7 +2,10 @@ import {
   combineReducers
 } from 'redux'
 
-import {CITY_CHOOSE} from '../actionTypes'
+import {
+  CITY_CHOOSE,
+  SET_PLACE
+} from '../actionTypes'
 
 const REQUEST_POSTS = 'REQUEST_POSTS'
 const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -70,8 +73,9 @@ function homePageReducer(state = {}, action) {
     default:
       return state
   }
-
 }
+
+
 
 const rootReducer = combineReducers({
   postsBySubreddit,
