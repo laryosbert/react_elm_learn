@@ -8,6 +8,7 @@ const routes = [
   ...require('page/home/router').default,
   ...require('page/game/router').default,
   ...require('page/place/router').default,
+  ...require('page/contextTest/router').default,
 ]
 
 
